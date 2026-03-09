@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rain Shadow 4-Day MTB Tour</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body { margin: 0; padding: 0; background: transparent; }
+
+        #ddt-tour * { box-sizing: border-box; }
+
+        #ddt-tour {
+            font-family: 'Lora', Georgia, serif;
+            max-width: 640px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            overflow: hidden;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+
+        /* Tab Bar */
+        #ddt-tour .ddt-tab-bar {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px 0;
+            background: #fafafa;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        #ddt-tour .ddt-tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #888;
+            border-radius: 8px 8px 0 0;
+            transition: color 0.2s, background 0.2s;
+            text-align: center;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        #ddt-tour .ddt-tab-btn:hover {
+            color: rgb(204, 108, 29);
+            background: rgba(204, 108, 29, 0.05);
+        }
+
+        #ddt-tour .ddt-tab-btn.ddt-active {
+            color: rgb(204, 108, 29) !important;
+            background: #fff !important;
+            border: 1px solid #e8e8e8;
+            border-bottom: 2px solid #fff;
+            margin-bottom: -1px;
+            font-weight: 700;
+        }
+
+        /* Headings */
+        #ddt-tour h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: rgb(50, 95, 145);
+            margin: 0 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(50, 95, 145, 0.15);
+            line-height: 1.3;
+        }
+
+        #ddt-tour h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #444;
+            margin: 0 0 16px;
+            line-height: 1.3;
+        }
+
+        /* H2 Row with pills */
+        #ddt-tour .ddt-h2-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(50, 95, 145, 0.15);
+            gap: 12px;
+        }
+
+        #ddt-tour .ddt-h2-row h2 {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        #ddt-tour .ddt-h2-pills {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        #ddt-tour .ddt-h2-pill {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        #ddt-tour .ddt-h2-pill.ddt-orange {
+            background: rgb(204, 108, 29);
+            color: #fff;
+        }
+
+        #ddt-tour .ddt-h2-pill.ddt-muted {
+            background: rgba(50, 95, 145, 0.1);
+            color: rgb(50, 95, 145);
+        }
+
+        #ddt-tour .ddt-h2-pill i {
+            font-size: 11px;
+        }
+
+        /* Tab Content */
+        #ddt-tour .ddt-tab-content {
+            display: none;
+            padding: 28px;
+        }
+
+        #ddt-tour .ddt-tab-content.ddt-active {
+            display: block;
+        }
+
+        #ddt-tour .ddt-tab-content p {
+            line-height: 1.72;
+            margin-bottom: 14px;
+            font-size: 15.5px;
+        }
+
+        /* Info Blocks */
+        #ddt-tour .ddt-info-blocks {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        #ddt-tour .ddt-info-block {
+            flex: 1;
+            border-radius: 10px;
+            padding: 16px 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        #ddt-tour .ddt-info-block-left {
+            background: rgb(50, 95, 145);
+            color: #fff;
+        }
+
+        #ddt-tour .ddt-info-block-right {
+            background: rgba(50, 95, 145, 0.12);
+            color: #2c2c2c;
+        }
+
+        #ddt-tour .ddt-ib-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        #ddt-tour .ddt-ib-row i {
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        #ddt-tour .ddt-info-block-left .ddt-ib-row i {
+            color: rgba(255,255,255,0.7);
+        }
+
+        #ddt-tour .ddt-info-block-right .ddt-ib-row i {
+            color: rgb(50, 95, 145);
+        }
+
+        #ddt-tour .ddt-ib-row b {
+            font-weight: 600;
+        }
+
+        #ddt-tour .ddt-book-now-row {
+            text-align: right;
+            margin-top: -4px;
+            margin-bottom: 8px;
+        }
+
+        #ddt-tour .ddt-book-now-btn {
+            display: inline-block;
+            background: rgb(204, 108, 29);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        #ddt-tour .ddt-book-now-btn:hover {
+            background: rgb(224, 128, 39);
+        }
+
+        /* Callout */
+        #ddt-tour .ddt-callout {
+            background: #f9f9f6;
+            border-left: 3px solid rgb(50, 95, 145);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #555;
+            margin: 16px 0;
+        }
+
+        #ddt-tour .ddt-callout b {
+            color: rgb(50, 95, 145);
+        }
+
+        /* Accordion */
+        #ddt-tour details {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 8px;
+        }
+
+        #ddt-tour details summary {
+            list-style: none;
+            position: relative;
+            padding: 14px 16px 14px 40px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        #ddt-tour details summary:hover {
+            background: rgba(204, 108, 29, 0.04);
+        }
+
+        #ddt-tour details summary::-webkit-details-marker { display: none; }
+        #ddt-tour details summary::marker { display: none; content: ''; }
+
+        #ddt-tour details summary::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid rgb(204, 108, 29);
+            border-bottom: 2px solid rgb(204, 108, 29);
+            transform: translateY(-50%) rotate(-45deg);
+            transition: transform 0.3s ease;
+        }
+
+        #ddt-tour details[open] summary::before {
+            transform: translateY(-65%) rotate(45deg);
+        }
+
+        #ddt-tour details summary b {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        #ddt-tour .ddt-day-body {
+            padding: 0 16px 16px;
+        }
+
+        #ddt-tour .ddt-time-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgb(204, 108, 29);
+            margin: 18px 0 8px;
+            display: block;
+        }
+
+        #ddt-tour .ddt-stats-line {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgb(50, 95, 145);
+            background: rgba(50, 95, 145, 0.08);
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        /* Price Cards */
+        #ddt-tour .ddt-price-card {
+            border-left: 3px solid rgb(204, 108, 29);
+            background: #fafafa;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+        }
+
+        #ddt-tour .ddt-price-main {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        #ddt-tour .ddt-price-main i {
+            color: rgb(204, 108, 29);
+            width: 20px;
+        }
+
+        #ddt-tour .ddt-price-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: rgb(204, 108, 29);
+        }
+
+        #ddt-tour .ddt-price-sub {
+            font-size: 13.5px;
+            color: #888;
+            margin-top: 6px;
+            padding-left: 28px;
+        }
+
+        /* Date Pills */
+        #ddt-tour .ddt-date-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        #ddt-tour .ddt-date-pill {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 24px;
+            background: rgba(50, 95, 145, 0.08);
+            color: rgb(50, 95, 145);
+            border: 1px solid rgba(50, 95, 145, 0.15);
+        }
+
+        #ddt-tour .ddt-date-group {
+            margin-bottom: 12px;
+        }
+
+        #ddt-tour .ddt-date-month {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #999;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        #ddt-tour .ddt-date-group .ddt-date-list {
+            margin: 0;
+        }
+
+        #ddt-tour .ddt-month-sep {
+            background: rgba(120, 80, 40, 0.08);
+            color: rgb(110, 70, 35);
+            border-color: rgba(120, 80, 40, 0.18);
+        }
+
+        #ddt-tour .ddt-month-oct {
+            background: rgba(155, 75, 20, 0.08);
+            color: rgb(140, 65, 15);
+            border-color: rgba(155, 75, 20, 0.18);
+        }
+
+        /* Includes */
+        #ddt-tour .ddt-includes-card {
+            background: rgba(50, 95, 145, 0.03);
+            border-left: 3px solid rgb(50, 95, 145);
+            border-radius: 0 10px 10px 0;
+            padding: 18px 22px;
+            margin: 20px 0 12px;
+        }
+
+        #ddt-tour .ddt-includes-card h3 {
+            margin: 0 0 12px;
+            color: rgb(50, 95, 145);
+        }
+
+        #ddt-tour .ddt-includes-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        #ddt-tour .ddt-includes-list li {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(50, 95, 145, 0.1);
+            color: rgb(50, 95, 145);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #ddt-tour .ddt-includes-list li i {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        #ddt-tour .ddt-private-card {
+            background: #fafafa;
+            border-left: 3px solid rgb(204, 108, 29);
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #ddt-tour .ddt-private-card a {
+            color: rgb(204, 108, 29);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        #ddt-tour .ddt-private-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            #ddt-tour .ddt-tab-content { padding-left: 36px; padding-right: 36px; }
+        }
+
+        @media (max-width: 600px) {
+            #ddt-tour .ddt-tab-btn { font-size: 11px; padding: 8px; }
+            #ddt-tour .ddt-tab-content { padding: 20px 14px; }
+            #ddt-tour .ddt-info-blocks { flex-direction: column; }
+            #ddt-tour .ddt-h2-row { flex-wrap: wrap; }
+            #ddt-tour .ddt-h2-pills { gap: 6px; }
+            #ddt-tour .ddt-h2-pill { font-size: 11px; padding: 4px 10px; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div id="ddt-tour">
+
+    <!-- Tabs -->
+    <div class="ddt-tab-bar">
+        <button data-tab="ddt-overview" class="ddt-tab-btn ddt-active">Overview</button>
+        <button data-tab="ddt-itinerary" class="ddt-tab-btn">Itinerary</button>
+        <button data-tab="ddt-price-dates" class="ddt-tab-btn">Price &amp; Dates</button>
+    </div>
+
+    <!-- Tab Content: Overview -->
+    <div id="ddt-overview" class="ddt-tab-content ddt-active">
+        <div class="ddt-h2-row">
+            <h2>Overview</h2>
+            <div class="ddt-h2-pills">
+                <span class="ddt-h2-pill ddt-orange"><i class="fa-solid fa-tag"></i> $1,450 / $3,300</span>
+                <span class="ddt-h2-pill ddt-muted"><i class="fa-solid fa-location-dot"></i> Wenatchee, WA</span>
+                <span class="ddt-h2-pill ddt-muted"><i class="fa-solid fa-calendar-days"></i> 4 Days</span>
+            </div>
+        </div>
+        <p>
+            The term <b>"rain shadow"</b> refers to the drying-out effect that the Cascade Mountains have on wet coastal air. On the eastern side can be found a dry, high-desert climate that is home to some of the <b>best riding in the PNW</b>.
+        </p>
+        <p>
+            We will kick things off with shuttling up to an epic descent of <b>Devil's Gulch</b> in Wenatchee, soak in the remote serenity of the <b>Methow Valley</b>, and finish up with an unbelievable ride through the alpine of <b>Angel's Staircase</b>.
+        </p>
+        <p>
+            This tour is for the avid MTBer that loves variety, technical and physical challenge, and ending each day with a delicious meal!
+        </p>
+
+        <div class="ddt-info-blocks">
+            <div class="ddt-info-block ddt-info-block-left">
+                <div class="ddt-ib-row"><i class="fa-solid fa-clock"></i> <span><b>Duration:</b> 4 Days</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-gauge"></i> <span><b>Technical Level:</b> Int/Adv</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-heart-pulse"></i> <span><b>Base Fitness Level:</b> 8 / 10</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-campground"></i> <span><b>Tour Style:</b> Camping or Hotels</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-users"></i> <span><b>Tour Size Minimum:</b> 2</span></div>
+            </div>
+            <div class="ddt-info-block ddt-info-block-right">
+                <div class="ddt-ib-row"><i class="fa-solid fa-plane-arrival"></i> <span><b>Fly In:</b> Wenatchee, WA</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-sun"></i> <span><b>Season:</b> June – October</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-bicycle"></i> <span><b>Rental Bikes:</b> Salsa Blackthorn ($85/day)</span></div>
+                <div class="ddt-ib-row"><i class="fa-solid fa-mountain"></i> <span><b>Elevation:</b> 2,000 – 7,300'</span></div>
+            </div>
+        </div>
+        <div class="ddt-callout">
+            <b>Note:</b> This tour is designed for intermediate to advanced riders with strong fitness. Big days in the saddle across varied terrain require solid endurance and comfort on technical singletrack.
+        </div>
+
+        <div class="ddt-book-now-row">
+            <a class="ddt-book-now-btn valet-embed" href="https://valet.rentals/experiences/RAIN-SHADOW-EXPERIENCE-ID" data-valet-type="experience" data-experience-id="RAIN-SHADOW-EXPERIENCE-ID">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Tab Content: Itinerary -->
+    <div id="ddt-itinerary" class="ddt-tab-content">
+        <h2>Itinerary</h2>
+
+        <details open>
+            <summary>
+                <b>Day 1: Wenatchee &amp; Methow Valley</b>
+            </summary>
+            <div class="ddt-day-body">
+                <span class="ddt-time-label">Morning — Devil's Gulch</span>
+                <p>
+                    After a meet-and-greet in Wenatchee, we'll load into the shuttle van and drive to the top of <b>Devil's Gulch</b>, one of the state's most epic shuttle rides. Even before swinging a leg over our bikes, we'll encounter unbelievable views of the Cascades and their eastern foothills from the shuttle road and trailhead.
+                </p>
+                <p>
+                    Devil's Gulch delivers what its reputation promises — buttery smooth, roller-coaster singletrack through ponderosa forests, narrow bench lines above Mission Creek, and speeds that'll make our eyes water. This descent rips — fast, flowy, and satisfying — and by the time we reach the lower trailhead we'll have earned a tasty lunch in the shade, and a hearty high-five all around.
+                </p>
+                <span class="ddt-stats-line">11.9 mi &nbsp;&middot;&nbsp; +315' / -3,430' elev.</span>
+
+                <span class="ddt-time-label" style="margin-top: 24px;">Afternoon — Loup Loup Pass</span>
+                <p>
+                    Having set the tone on a high note, we'll hop in the van and drive up into the Methow Valley for our second ride of the day. <b>The Loup</b> is one of the Methow's newest trail networks, with the highest density of purpose-built mountain bike trails. Berms, rock-rolls, doubles, techy sections, and ripping singletrack abound — as do views of the valley and Cascades, of course!
+                </p>
+                <p>
+                    We'll work our way uphill via <b>Bear With Me</b> and some narrow doubletrack, climbing at a manageable pace through open forest and high-country clearings. The majority of the climb is extremely pleasant — one of those climbs where you forget you're gaining elevation and can hold a conversation — and the views steadily improve the higher we get.
+                </p>
+                <p>
+                    <b>Fozzie Bear Inventions</b> serves up a technical, modern descent with optional rock rolls, drops, and other features. After Fozzie Bear we'll shoot for terminal velocity on the fun and smooth <b>Telemark</b> and finish things off on the newest trail in the Methow Valley: <b>Oh, Bother</b>. Boasting chunky rock slabs and rollable gap jumps with berms in between, this one will be a highlight for the advanced rider who likes to get a little loose.
+                </p>
+                <span class="ddt-stats-line">12 mi &nbsp;&middot;&nbsp; &plusmn;1,993' elev.</span>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <b>Day 2: Methow Valley – Thompson Ridge</b>
+            </summary>
+            <div class="ddt-day-body">
+                <p>
+                    After a hearty breakfast at camp, we'll head up to the <b>Chickadee Trailhead</b>, a renowned singletrack trail system with a wide variety of trail types and skill levels. Our aim, though, is a backcountry mission: <b>Thompson Ridge</b>.
+                </p>
+                <p>
+                    We will once again gain motorized advantage by shuttling about 1,000' up to start our climb. Don't think that means we won't be working — we will still have a 2,000' climb to reach our ripping 3,000' descent. With sweeping views of the Methow Valley and perfect berm after perfect berm, our cups will be plenty full.
+                </p>
+                <p>
+                    For those that still have some zoomies to kick, there will be the option of more riding at Chickadee or around Pearrygin Lake from camp via the <b>Rex Derr Trail</b>, a mellow 5-mile intermediate loop. We'll finish the day with a delicious dinner at camp or in town for hotel tours, and rest up for another great day to follow!
+                </p>
+                <span class="ddt-stats-line">12.6 mi &nbsp;&middot;&nbsp; +2,190' / -2,580' elev. (shuttle)</span>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <b>Day 3: Buck Mountain</b>
+            </summary>
+            <div class="ddt-day-body">
+                <p>
+                    Day 3 will feature one of our favorite rides in the Methow Valley — the majestic <b>Buck Mountain</b>. With only a short 15-minute shuttle to the trailhead, we'll take advantage of the simple logistics of the day to have a more leisurely start.
+                </p>
+                <p>
+                    Leave the tech to Day 4 — Buck Mountain is all about serene flow. We'll climb 2,200' on a mellow grade over 7 miles, zig-zagging through ponderosa groves, wildflowers, and sage meadows. Views of the valley abound, and the descent could be aptly described as "hero."
+                </p>
+                <p>
+                    We will finish up in mid-afternoon, leaving plenty of time for optional activities — those who didn't ride Pearrygin yesterday may hit the Rex Derr loop, or we'll relax at the lake until dinner!
+                </p>
+                <span class="ddt-stats-line">14.2 mi &nbsp;&middot;&nbsp; &plusmn;2,200' elev.</span>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <b>Day 4: Angel's Staircase</b>
+            </summary>
+            <div class="ddt-day-body">
+                <p>
+                    Day 4 is the crescendo of the trip! Get ready for our biggest alpine adventure of the tour and the highest elevations of our 4 days. From our hotel we'll drive up to the Sawtooth Backcountry, to an area known as <b>"Angel's Staircase"</b>, surrounded by craggy peaks and 360-degree views at the top of the climb.
+                </p>
+                <p>
+                    With a partial shuttle advantage, we'll pedal up <b>Martin Creek</b> for 7.5 miles and 2,500' to reach our highest point of the trip at <b>7,300' above tree level</b>, and a pristine lake to catch our breaths.
+                </p>
+                <p>
+                    It's all downhill from there, as we begin the descending portion of the Martin Creek Trail and turn off onto the legendary <b>Foggy Dew Trail</b>. Views abound, as do big Ponderosa and Larch trees that burst into golden leaves in the fall. After basking in some post-ride glow we'll drive 2 hours back to Wenatchee to say our goodbyes, concluding an epic and full 4 days in beautiful Eastern Washington!
+                </p>
+                <span class="ddt-stats-line">13.2 mi &nbsp;&middot;&nbsp; +2,075' / -4,076' elev.</span>
+            </div>
+        </details>
+
+        <div class="ddt-book-now-row">
+            <a class="ddt-book-now-btn valet-embed" href="https://valet.rentals/experiences/RAIN-SHADOW-EXPERIENCE-ID" data-valet-type="experience" data-experience-id="RAIN-SHADOW-EXPERIENCE-ID">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Tab Content: Price & Dates -->
+    <div id="ddt-price-dates" class="ddt-tab-content">
+        <h2>Price &amp; Dates</h2>
+
+        <h3>Pricing</h3>
+
+        <div class="ddt-price-card">
+            <div class="ddt-price-main"><i class="fa-solid fa-campground"></i>&nbsp;&nbsp;Camping Tour: <span class="ddt-price-tag">$1,450/person</span></div>
+            <div class="ddt-price-sub">Gear rental available: +$150</div>
+        </div>
+
+        <div class="ddt-price-card">
+            <div class="ddt-price-main"><i class="fa-solid fa-hotel"></i>&nbsp;&nbsp;Hotel Tour: <span class="ddt-price-tag">$3,300/person</span></div>
+            <div class="ddt-price-sub">Single occupancy room: +$450</div>
+        </div>
+
+        <div class="ddt-price-card">
+            <div class="ddt-price-main"><i class="fa-solid fa-bicycle"></i>&nbsp;&nbsp;Rental Bike: $85/day</div>
+            <div class="ddt-price-sub">Deposit to book: $500</div>
+        </div>
+
+        <h3 style="margin-top: 28px;">What's Included</h3>
+
+        <div class="ddt-includes-card">
+            <ul class="ddt-includes-list">
+                <li><i class="fa-solid fa-bed"></i> Lodging</li>
+                <li><i class="fa-solid fa-utensils"></i> Meals</li>
+                <li><i class="fa-solid fa-van-shuttle"></i> Transportation</li>
+                <li><i class="fa-solid fa-shirt"></i> DDT T-Shirt</li>
+                <li><i class="fa-solid fa-bottle-water"></i> DDT Water Bottle</li>
+            </ul>
+        </div>
+
+        <h3 style="margin-top: 28px;">2026 Dates</h3>
+
+        <div class="ddt-date-group">
+            <span class="ddt-date-month">September</span>
+            <ul class="ddt-date-list">
+                <li class="ddt-date-pill ddt-month-sep">Sept 24–27</li>
+            </ul>
+        </div>
+        <div class="ddt-date-group">
+            <span class="ddt-date-month">October</span>
+            <ul class="ddt-date-list">
+                <li class="ddt-date-pill ddt-month-oct">Oct 1–4</li>
+            </ul>
+        </div>
+
+        <h3 style="margin-top: 28px;">Private</h3>
+
+        <div class="ddt-private-card">
+            Interested in making your tour private? Call us at <a href="tel:+13605923930">(360) 592-3930</a>, or email <a href="mailto:info@digdeeptours.com">info@digdeeptours.com</a>.
+        </div>
+
+        <div class="ddt-book-now-row">
+            <a class="ddt-book-now-btn valet-embed" href="https://valet.rentals/experiences/RAIN-SHADOW-EXPERIENCE-ID" data-valet-type="experience" data-experience-id="RAIN-SHADOW-EXPERIENCE-ID">Book Now</a>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    var root = document.getElementById('ddt-tour');
+    if (!root) return;
+
+    var tabs = root.querySelectorAll('.ddt-tab-btn');
+    var panels = root.querySelectorAll('.ddt-tab-content');
+
+    function switchTab(e) {
+        var btn = e.currentTarget;
+        var target = btn.getAttribute('data-tab');
+        if (!target) return;
+
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('ddt-active');
+        }
+        for (var j = 0; j < panels.length; j++) {
+            panels[j].classList.remove('ddt-active');
+        }
+
+        btn.classList.add('ddt-active');
+        var panel = root.querySelector('#' + target);
+        if (panel) panel.classList.add('ddt-active');
+    }
+
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', switchTab);
+    }
+
+    // Accordion: only one day open at a time
+    var details = root.querySelectorAll('details');
+    details.forEach(function(d) {
+        d.addEventListener('toggle', function() {
+            if (d.open) {
+                details.forEach(function(other) {
+                    if (other !== d) other.removeAttribute('open');
+                });
+            }
+            notifyHeight();
+        });
+    });
+
+    // Auto-resize: send height to parent iframe
+    function notifyHeight() {
+        var h = document.body.scrollHeight + 32;
+        window.parent.postMessage({ ddt_height: h }, '*');
+    }
+    notifyHeight();
+    window.addEventListener('resize', notifyHeight);
+    if (document.fonts) {
+        document.fonts.ready.then(notifyHeight);
+    }
+    setTimeout(notifyHeight, 500);
+    setTimeout(notifyHeight, 1500);
+    var observer = new MutationObserver(notifyHeight);
+    observer.observe(root, { childList: true, subtree: true, attributes: true });
+
+    // Valet booking: send to parent page so popup covers full site
+    // Falls back to direct link if not in an iframe
+    var inIframe = (window !== window.parent);
+    root.querySelectorAll('.valet-embed').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (inIframe) {
+                window.parent.postMessage({
+                    ddt_valet: true,
+                    href: link.getAttribute('href'),
+                    experienceId: link.getAttribute('data-experience-id')
+                }, '*');
+            } else {
+                window.open(link.getAttribute('href'), '_blank');
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
